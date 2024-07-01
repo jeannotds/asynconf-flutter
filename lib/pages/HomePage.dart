@@ -1,4 +1,6 @@
+import 'package:asyncof/pages/EventPanning.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -38,7 +40,10 @@ class HomePage extends StatelessWidget {
                         foregroundColor: WidgetStatePropertyAll(Colors.white),
                         padding: WidgetStatePropertyAll(EdgeInsets.all(20))),
                     onPressed: () {
-                      print("Salut les amis");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const EventPage()));
                     },
                     icon: const Icon(Icons.calendar_month),
                     label: const Text(
@@ -46,10 +51,6 @@ class HomePage extends StatelessWidget {
                       style: TextStyle(fontSize: 20),
                     ),
                   )
-                  // child: const Text(
-                  //   "Afficher le planning",
-                  //   style: TextStyle(fontSize: 20),
-                  // ))
                 ],
               )),
         ));
