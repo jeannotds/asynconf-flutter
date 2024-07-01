@@ -30,7 +30,26 @@ class HomePage extends StatelessWidget {
                     "Salon virtuel de l'informatique. Du 27 au 29 Octobre 2024",
                     style: TextStyle(fontSize: 24),
                     textAlign: TextAlign.center,
+                  ),
+                  const Padding(padding: EdgeInsets.only(top: 20)),
+                  ElevatedButton.icon(
+                    style: const ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(Colors.blue),
+                        foregroundColor: WidgetStatePropertyAll(Colors.white),
+                        padding: WidgetStatePropertyAll(EdgeInsets.all(20))),
+                    onPressed: () {
+                      print("Salut les amis");
+                    },
+                    icon: const Icon(Icons.calendar_month),
+                    label: const Text(
+                      "Afficher le planning",
+                      style: TextStyle(fontSize: 20),
+                    ),
                   )
+                  // child: const Text(
+                  //   "Afficher le planning",
+                  //   style: TextStyle(fontSize: 20),
+                  // ))
                 ],
               )),
         ));
