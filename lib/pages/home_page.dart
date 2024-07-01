@@ -1,4 +1,4 @@
-import 'package:asyncof/pages/EventPanning.dart';
+import 'package:asyncof/pages/event_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
