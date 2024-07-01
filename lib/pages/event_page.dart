@@ -10,34 +10,35 @@ class EventPage extends StatelessWidget {
           title: const Text("Planning du salon"),
         ),
         body: ListView(
-          children: const [
+          children: [
             Card(
               child: ListTile(
-                leading: FlutterLogo(size: 72.0),
-                title: Text('Three-line ListTile'),
-                subtitle:
-                    Text('A sufficiently long subtitle warrants three lines.'),
-                trailing: Icon(Icons.more_vert),
+                leading: Image.asset(
+                  "assets/images/arnaud.jpg",
+                ),
+                title: const Text('Arnaud Garnacho'),
+                subtitle: const Text('Git blame --no-offense ?'),
+                trailing: const Icon(Icons.more_vert),
                 isThreeLine: true,
               ),
             ),
             Card(
               child: ListTile(
-                leading: FlutterLogo(size: 72.0),
-                title: Text('Three-line ListTile'),
-                subtitle:
-                    Text('A sufficiently long subtitle warrants three lines.'),
-                trailing: Icon(Icons.more_vert),
+                leading: Image.asset("assets/images/john.jpg"),
+                title: const Text('John Margon'),
+                subtitle: const Text(
+                    'A sufficiently long subtitle warrants three lines.'),
+                trailing: const Icon(Icons.more_vert),
                 isThreeLine: true,
               ),
             ),
             Card(
               child: ListTile(
-                leading: FlutterLogo(size: 72.0),
-                title: Text('Three-line ListTile'),
-                subtitle:
-                    Text('A sufficiently long subtitle warrants three lines.'),
-                trailing: Icon(Icons.more_vert),
+                leading: Image.asset("assets/images/james.jpg"),
+                title: const Text('James Parcaston'),
+                subtitle: const Text(
+                    'A sufficiently long subtitle warrants three lines.'),
+                trailing: const Icon(Icons.more_vert),
                 isThreeLine: true,
               ),
             ),
