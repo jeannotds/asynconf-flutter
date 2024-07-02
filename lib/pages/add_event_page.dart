@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:date_field/date_field.dart';
 
 class AddEventPage extends StatefulWidget {
   const AddEventPage({super.key});
@@ -15,6 +16,8 @@ class _AddEventPageState extends State<AddEventPage> {
   final confNameController = TextEditingController();
   final confSpeakerNameController = TextEditingController();
   String confSelectedType = "talk";
+  DateTime confSelectedDate = DateTime.now();
+  //  selectedDate;
 
 //dispose elements to get
   @override
@@ -85,6 +88,21 @@ class _AddEventPageState extends State<AddEventPage> {
                   },
                   value: confSelectedType),
             ),
+            Container(
+              margin: const EdgeInsets.only(bottom: 10),
+              child: DateTimeFormField(
+                decoration: const InputDecoration(
+                    labelText: 'Selectionner une date',
+                    border: OutlineInputBorder()),
+                initialPickerDateTime:
+                    DateTime.now().add(const Duration(days: 20)),
+                onChanged: (DateTime? value) {
+                  setState(() {
+                    confSelectedDate = value!;
+                  });
+                },
+              ),
+            ),
             SizedBox(
               width: double.infinity,
               height: 50,
@@ -109,6 +127,7 @@ class _AddEventPageState extends State<AddEventPage> {
                       print("confNameController : $name");
                       print("confNameController : $speaker");
                       print("Type de conference : $typeConf");
+                      print("date : $confSelectedDate");
                     }
                   },
                   child: const Text("Envoyer")),
