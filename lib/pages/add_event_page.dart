@@ -18,9 +18,9 @@ class _AddEventPageState extends State<AddEventPage> {
 //dispose elements to get
   @override
   void dispose() {
+    super.dispose();
     confNameController.dispose();
     confSpeakerNameController.dispose();
-    super.dispose();
   }
 
   @override
@@ -65,6 +65,20 @@ class _AddEventPageState extends State<AddEventPage> {
                 },
                 controller: confSpeakerNameController,
               ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(bottom: 10),
+              child: DropdownButtonFormField(
+                  decoration:
+                      const InputDecoration(border: OutlineInputBorder()),
+                  items: const [
+                    DropdownMenuItem(value: "talk", child: Text("Talk show")),
+                    DropdownMenuItem(value: "demo", child: Text("Demo show")),
+                    DropdownMenuItem(
+                        value: "partner", child: Text("Partner show")),
+                  ],
+                  onChanged: (value) {},
+                  value: "talk"),
             ),
             SizedBox(
               width: double.infinity,
