@@ -14,6 +14,7 @@ class _AddEventPageState extends State<AddEventPage> {
   //get value Input
   final confNameController = TextEditingController();
   final confSpeakerNameController = TextEditingController();
+  String confSelectedType = "talk";
 
 //dispose elements to get
   @override
@@ -77,8 +78,12 @@ class _AddEventPageState extends State<AddEventPage> {
                     DropdownMenuItem(
                         value: "partner", child: Text("Partner show")),
                   ],
-                  onChanged: (value) {},
-                  value: "talk"),
+                  onChanged: (String? value) {
+                    setState(() {
+                      confSelectedType = value!;
+                    });
+                  },
+                  value: confSelectedType),
             ),
             SizedBox(
               width: double.infinity,
@@ -94,6 +99,7 @@ class _AddEventPageState extends State<AddEventPage> {
                     if (_formKey.currentState!.validate()) {
                       final name = confNameController.text;
                       final speaker = confSpeakerNameController.text;
+                      final typeConf = confSelectedType;
 
                       ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text("Envois en cours...")));
@@ -102,6 +108,7 @@ class _AddEventPageState extends State<AddEventPage> {
                       FocusScope.of(context).requestFocus(FocusNode());
                       print("confNameController : $name");
                       print("confNameController : $speaker");
+                      print("Type de conference : $typeConf");
                     }
                   },
                   child: const Text("Envoyer")),
