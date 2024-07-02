@@ -30,32 +30,60 @@ class _EventPageState extends State<EventPage> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text("Planning du salon"),
-        ),
-        body: Center(
-          child: ListView.builder(
-              itemCount: events.length,
-              itemBuilder: (context, index) {
-                final event = events[index];
-                final speaker = event["speaker"];
-                final avatar = event["avatar"];
-                final date = event["date"];
-                final subject = event["subject"];
-                return Card(
-                  child: ListTile(
-                    leading: Image.asset(
-                      "$avatar",
-                    ),
-                    title: Text('$speaker ($date)'),
-                    subtitle: Text('$subject'),
-                    // trailing: const Icon(Icons.more_vert),
-                    trailing: const Icon(Icons.info_sharp),
-                    isThreeLine: true,
-                  ),
-                );
-              }),
-        ));
+    return Center(
+      child: ListView.builder(
+          itemCount: events.length,
+          itemBuilder: (context, index) {
+            final event = events[index];
+            final speaker = event["speaker"];
+            final avatar = event["avatar"];
+            final date = event["date"];
+            final subject = event["subject"];
+            return Card(
+              child: ListTile(
+                leading: Image.asset(
+                  "$avatar",
+                ),
+                title: Text('$speaker ($date)'),
+                subtitle: Text('$subject'),
+                // trailing: const Icon(Icons.more_vert),
+                trailing: const Icon(Icons.info_sharp),
+                isThreeLine: true,
+              ),
+            );
+          }),
+    );
   }
 }
+
+// Scaffold(
+//         appBar: AppBar(
+//           title: const Text("Planning du salon"),
+//         ),
+//         body: 
+//         );
+
+
+// Center(
+//           child: ListView.builder(
+//               itemCount: events.length,
+//               itemBuilder: (context, index) {
+//                 final event = events[index];
+//                 final speaker = event["speaker"];
+//                 final avatar = event["avatar"];
+//                 final date = event["date"];
+//                 final subject = event["subject"];
+//                 return Card(
+//                   child: ListTile(
+//                     leading: Image.asset(
+//                       "$avatar",
+//                     ),
+//                     title: Text('$speaker ($date)'),
+//                     subtitle: Text('$subject'),
+//                     // trailing: const Icon(Icons.more_vert),
+//                     trailing: const Icon(Icons.info_sharp),
+//                     isThreeLine: true,
+//                   ),
+//                 );
+//               }),
+//         )
