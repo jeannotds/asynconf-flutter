@@ -32,8 +32,8 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
             title: [
           const Text("Accueil"),
-          const Text("Planning"),
-          const Text("Ajout")
+          const Text("Liste de conference"),
+          const Text("Formulaire")
         ][_currentIndex]),
         body: [
           const HomePage(),
