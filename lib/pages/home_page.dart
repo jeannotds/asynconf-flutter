@@ -29,23 +29,23 @@ class HomePage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const Padding(padding: EdgeInsets.only(top: 20)),
-              ElevatedButton.icon(
-                style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(Colors.blue),
-                    foregroundColor: WidgetStatePropertyAll(Colors.white),
-                    padding: WidgetStatePropertyAll(EdgeInsets.all(20))),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const EventPage()));
-                },
-                icon: const Icon(Icons.calendar_month),
-                label: const Text(
-                  "Afficher le planning",
-                  style: TextStyle(fontSize: 20),
-                ),
-              )
+              // ElevatedButton.icon(
+              //   style: const ButtonStyle(
+              //       backgroundColor: WidgetStatePropertyAll(Colors.blue),
+              //       foregroundColor: WidgetStatePropertyAll(Colors.white),
+              //       padding: WidgetStatePropertyAll(EdgeInsets.all(20))),
+              //   onPressed: () {
+              //     Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //             builder: (context) => const EventPage()));
+              //   },
+              //   icon: const Icon(Icons.calendar_month),
+              //   label: const Text(
+              //     "Afficher le planning",
+              //     style: TextStyle(fontSize: 20),
+              //   ),
+              // )
             ],
           )),
     );
