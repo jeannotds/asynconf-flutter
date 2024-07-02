@@ -18,7 +18,17 @@ class MyApp extends StatelessWidget {
         body: const HomePage(),
         bottomNavigationBar: BottomNavigationBar(
           //Here is for styles
+
+          //Element Selected color menu
           selectedItemColor: Colors.green,
+
+          //Element no selected
+          unselectedItemColor: Colors.grey,
+
+          //Size Icon
+          iconSize: 40,
+
+          elevation: 10,
 
           //Items of navigation
           items: const [
