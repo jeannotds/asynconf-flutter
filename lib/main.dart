@@ -30,8 +30,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Asynconf 2024"),
-        ),
+            title: [
+          const Text("Accueil"),
+          const Text("Planning"),
+          const Text("Ajout")
+        ][_currentIndex]),
         body: [
           const HomePage(),
           const EventPage(),
