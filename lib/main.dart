@@ -5,8 +5,23 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  // _ it means variable private
+  int _currentIndex = 0;
+
+  // A method to change currentIndex
+  setCurrentIndex(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +32,13 @@ class MyApp extends StatelessWidget {
         ),
         body: const HomePage(),
         bottomNavigationBar: BottomNavigationBar(
+          //Use for change menu idex
+          currentIndex: _currentIndex,
+
+          onTap: (index) {
+            setCurrentIndex(index);
+          },
+
           //Here is for styles
 
           //Element Selected color menu
