@@ -50,7 +50,8 @@ class _EventPageState extends State<EventPage> {
                     ),
                     title: Text('$speaker ($date)'),
                     subtitle: Text('$subject'),
-                    trailing: Icon(Icons.more_vert),
+                    // trailing: const Icon(Icons.more_vert),
+                    trailing: const Icon(Icons.info_sharp),
                     isThreeLine: true,
                   ),
                 );
