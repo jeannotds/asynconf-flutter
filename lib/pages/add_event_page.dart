@@ -51,6 +51,9 @@ class _AddEventPageState extends State<AddEventPage> {
                       print("Vey good");
                       ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text("Envois en cours...")));
+
+                      // Send form and close keyboard
+                      FocusScope.of(context).requestFocus(FocusNode());
                     }
                   },
                   child: const Text("Envoyer")),
