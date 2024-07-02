@@ -1,3 +1,4 @@
+import 'package:asyncof/pages/add_event_page.dart';
 import 'package:asyncof/pages/event_page.dart';
 import 'package:asyncof/pages/home_page.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,11 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text("Asynconf 2024"),
         ),
-        body: [const HomePage(), const EventPage()][_currentIndex],
+        body: [
+          const HomePage(),
+          const EventPage(),
+          const AddEventPage()
+        ][_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           //Use for change menu idex
           currentIndex: _currentIndex,
@@ -58,6 +63,7 @@ class _MyAppState extends State<MyApp> {
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Accueil"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.calendar_month), label: "Planning"),
+            BottomNavigationBarItem(icon: Icon(Icons.add), label: "Ajout"),
           ],
         ),
       ),
