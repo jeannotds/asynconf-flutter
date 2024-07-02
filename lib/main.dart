@@ -1,3 +1,4 @@
+import 'package:asyncof/pages/event_page.dart';
 import 'package:asyncof/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,7 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text("Asynconf 2024"),
         ),
-        body: const HomePage(),
+        body: [const HomePage(), const EventPage()][_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           //Use for change menu idex
           currentIndex: _currentIndex,
