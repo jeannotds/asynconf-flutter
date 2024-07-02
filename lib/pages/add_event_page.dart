@@ -8,12 +8,16 @@ class AddEventPage extends StatefulWidget {
 }
 
 class _AddEventPageState extends State<AddEventPage> {
+  //garder le status du formulaire avec toutes les informations
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       // decoration: BoxDecoration(),
       child: Form(
+        key: _formKey,
         child: Column(
           children: [
             Container(
@@ -23,6 +27,13 @@ class _AddEventPageState extends State<AddEventPage> {
                     hintText: "Entrer nom de la conference",
                     labelText: "Nom conference",
                     border: OutlineInputBorder()),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Tu dois completer ce texte';
+                  } else {
+                    return null;
+                  }
+                },
               ),
             ),
             SizedBox(
@@ -35,7 +46,13 @@ class _AddEventPageState extends State<AddEventPage> {
                       shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(3)),
                       ))),
-                  onPressed: () {},
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      print("Vey good");
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Envois en cours...")));
+                    }
+                  },
                   child: const Text("Envoyer")),
             )
           ],
