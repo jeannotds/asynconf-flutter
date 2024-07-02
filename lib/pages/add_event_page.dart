@@ -11,6 +11,18 @@ class _AddEventPageState extends State<AddEventPage> {
   //garder le status du formulaire avec toutes les informations
   final _formKey = GlobalKey<FormState>();
 
+  //get value Input
+  final confNameController = TextEditingController();
+  final confSpeakerNameController = TextEditingController();
+
+//dispose elements to get
+  @override
+  void dispose() {
+    confNameController.dispose();
+    confSpeakerNameController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,6 +46,24 @@ class _AddEventPageState extends State<AddEventPage> {
                     return null;
                   }
                 },
+                controller: confNameController,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(bottom: 10),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                    hintText: "Entrer nom du speakere",
+                    labelText: "Nom du speaker",
+                    border: OutlineInputBorder()),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Tu dois completer ce texte';
+                  } else {
+                    return null;
+                  }
+                },
+                controller: confSpeakerNameController,
               ),
             ),
             SizedBox(
@@ -48,12 +78,16 @@ class _AddEventPageState extends State<AddEventPage> {
                       ))),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      print("Vey good");
+                      final name = confNameController.text;
+                      final speaker = confSpeakerNameController.text;
+
                       ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text("Envois en cours...")));
 
                       // Send form and close keyboard
                       FocusScope.of(context).requestFocus(FocusNode());
+                      print("confNameController : $name");
+                      print("confNameController : $speaker");
                     }
                   },
                   child: const Text("Envoyer")),
