@@ -20,4 +20,7 @@ samples, guidance on mobile development, and a full API reference.
 
  1.installerun moule qui permettra d utiliser firebase firestore 
    flutter pub add cloud_firestore
+
+2. Converture data :
+      flutter pub add intl
 -->
