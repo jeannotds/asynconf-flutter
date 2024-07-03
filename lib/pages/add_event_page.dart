@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
 
@@ -115,8 +116,8 @@ class _AddEventPageState extends State<AddEventPage> {
                       ))),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      final name = confNameController.text;
-                      final speaker = confSpeakerNameController.text;
+                      final confName = confNameController.text;
+                      final speakerName = confSpeakerNameController.text;
                       final typeConf = confSelectedType;
 
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -124,10 +125,23 @@ class _AddEventPageState extends State<AddEventPage> {
 
                       // Send form and close keyboard
                       FocusScope.of(context).requestFocus(FocusNode());
-                      print("confNameController : $name");
-                      print("confNameController : $speaker");
+                      print("confNameController : $confName");
+                      print("confNameController : $speakerName");
                       print("Type de conference : $typeConf");
                       print("date : $confSelectedDate");
+
+                      //Ajout dans la collection
+
+                      // Recuperer la collection
+                      CollectionReference eventsRef =
+                          FirebaseFirestore.instance.collection("Events");
+
+                      eventsRef.add({
+                        "speaker": speakerName,
+                        "date": confSelectedDate,
+                        "subject": confName,
+                        "avatar": "lior",
+                      });
                     }
                   },
                   child: const Text("Envoyer")),
