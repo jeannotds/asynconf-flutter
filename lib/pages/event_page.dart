@@ -1,3 +1,4 @@
+import 'package:asyncof/models/events_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -12,26 +13,38 @@ class EventPage extends StatefulWidget {
 class _EventPageState extends State<EventPage> {
   @override
   Widget build(BuildContext context) {
-    Future<void> showEventsDetailDialog() async {
+    Future<void> showEventsDetailDialog(Event eventData) async {
+      String date =
+          DateFormat.yMd().add_jm().format(eventData.timestamp.toDate());
       return showDialog<void>(
         context: context,
         barrierDismissible: true, // user must tap button!
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Conference Lior'),
+            title: Text(
+              'Conference Lior ${eventData.speaker}',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
                   Image.network(
-                    "https://res.cloudinary.com/disyacex9/image/upload/v1718372083/l4vfzow8qkjivno6nmsn.jpg",
+                    eventData.avatar,
                     height: 200,
                   ),
-                  const Text(
-                    'Titre : Sujet de la conference',
-                    style: TextStyle(fontSize: 20),
+                  Text(
+                    'Titre : ${eventData.subject}',
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.w600),
                   ),
-                  const Text('Speaker : Lior champar'),
-                  const Text('Data de la conf : 12h30'),
+                  Text(
+                    'Speaker : ${eventData.speaker}',
+                    style: const TextStyle(fontSize: 17),
+                  ),
+                  Text(
+                    'Data de la conf : $date',
+                    style: const TextStyle(fontSize: 17),
+                  ),
                 ],
               ),
             ),
@@ -69,22 +82,22 @@ class _EventPageState extends State<EventPage> {
                 return const Text("Aucune conference");
               }
               // Creer une liste dynamique
-              List<dynamic> events = [];
+              List<Event> events = [];
 
-              for (var element in snapshot.data!.docs) {
-                events.add(element);
+              for (var data in snapshot.data!.docs) {
+                events.add(Event.fromData(data));
               }
 
               return ListView.builder(
                   itemCount: events.length,
                   itemBuilder: (context, index) {
                     final event = events[index];
-                    final speaker = event["speaker"];
-                    final avatar = event["avatar"].toString().toLowerCase();
-                    final Timestamp timestamp = event["date"];
+                    final speaker = event.speaker;
+                    final avatar = event.avatar;
+                    final Timestamp timestamp = event.timestamp;
                     String date =
                         DateFormat.yMd().add_jm().format(timestamp.toDate());
-                    final subject = event["subject"];
+                    final subject = event.subject;
                     return Card(
                       child: ListTile(
                         // leading: Image.asset(
@@ -99,7 +112,7 @@ class _EventPageState extends State<EventPage> {
                         trailing: IconButton(
                             onPressed: () {
                               // appel de la fonction popup
-                              showEventsDetailDialog();
+                              showEventsDetailDialog(event);
                             },
                             icon: const Icon(Icons.info_sharp)),
                         isThreeLine: true,
