@@ -17,17 +17,22 @@ class _EventPageState extends State<EventPage> {
         // stream : la requette a notre collection en temps reel
         child: StreamBuilder(
             stream: FirebaseFirestore.instance.collection("Events").snapshots(),
+            //Builder : Construire la vue avec les donnees recuperer et à afficher
             builder:
+                // AsyncSnapshot<QuerySnapshot> : Recuperer la reponse de la requette
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              //Verifier si la reponse est disponible ou en cours
               if (snapshot.connectionState == ConnectionState.waiting) {
+                //CircularProgressIndicator : tourne pour attendre la reponse
                 return const CircularProgressIndicator();
               }
-
+              //Verifier si les donnees envoyées existent
               if (!snapshot.hasData) {
                 return const Text("Aucune conference");
               }
-
+              // Creer une liste dynamique
               List<dynamic> events = [];
+
               for (var element in snapshot.data!.docs) {
                 events.add(element);
               }
@@ -48,7 +53,7 @@ class _EventPageState extends State<EventPage> {
                         //   "$avatar",
                         // ),
                         leading: Image.network(
-                          "$avatar",
+                          avatar,
                         ),
                         title: Text('$speaker ($date)'),
                         subtitle: Text('$subject'),
