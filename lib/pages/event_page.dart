@@ -16,7 +16,10 @@ class _EventPageState extends State<EventPage> {
     return Center(
         // stream : la requette a notre collection en temps reel
         child: StreamBuilder(
-            stream: FirebaseFirestore.instance.collection("Events").snapshots(),
+            stream: FirebaseFirestore.instance
+                .collection("Events")
+                // .where('type', isEqualTo: "talk")
+                .snapshots(),
             //Builder : Construire la vue avec les donnees recuperer et à afficher
             builder:
                 // AsyncSnapshot<QuerySnapshot> : Recuperer la reponse de la requette
