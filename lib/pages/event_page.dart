@@ -85,6 +85,7 @@ class _EventPageState extends State<EventPage> {
               List<Event> events = [];
 
               for (var data in snapshot.data!.docs) {
+                print("object $data");
                 events.add(Event.fromData(data));
               }
 
@@ -95,7 +96,6 @@ class _EventPageState extends State<EventPage> {
                     final speaker = event.speaker;
                     final avatar = event.avatar;
                     final Timestamp timestamp = event.timestamp;
-                    print("events:  ${event.speaker}");
                     String date =
                         DateFormat.yMd().add_jm().format(timestamp.toDate());
                     final subject = event.subject;
@@ -108,7 +108,7 @@ class _EventPageState extends State<EventPage> {
                           avatar,
                         ),
                         title: Text('$speaker ($date)'),
-                        subtitle: Text('$subject'),
+                        subtitle: Text(subject),
                         // trailing: const Icon(Icons.more_vert),
                         trailing: IconButton(
                             onPressed: () {
@@ -123,36 +123,3 @@ class _EventPageState extends State<EventPage> {
             }));
   }
 }
-
-// Scaffold(
-//         appBar: AppBar(
-//           title: const Text("Planning du salon"),
-//         ),
-//         body:
-//         );
-
-// Center(
-//           child: ListView.builder(
-//               itemCount: events.length,
-//               itemBuilder: (context, index) {
-//                 final event = events[index];
-//                 final speaker = event["speaker"];
-//                 final avatar = event["avatar"];
-//                 final date = event["date"];
-//                 final subject = event["subject"];
-//                 return Card(
-//                   child: ListTile(
-//                     leading: Image.asset(
-//                       "$avatar",
-//                     ),
-//                     title: Text('$speaker ($date)'),
-//                     subtitle: Text('$subject'),
-//                     // trailing: const Icon(Icons.more_vert),
-//                     trailing: const Icon(Icons.info_sharp),
-//                     isThreeLine: true,
-//                   ),
-//                 );
-//               }),
-//         )
-
-
