@@ -119,16 +119,14 @@ class _AddEventPageState extends State<AddEventPage> {
                       final confName = confNameController.text;
                       final speakerName = confSpeakerNameController.text;
                       final typeConf = confSelectedType;
+                      String avatar =
+                          "https://res.cloudinary.com/disyacex9/image/upload/v1718372083/l4vfzow8qkjivno6nmsn.jpg";
 
                       ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text("Envois en cours...")));
 
                       // Send form and close keyboard
                       FocusScope.of(context).requestFocus(FocusNode());
-                      print("confNameController : $confName");
-                      print("confNameController : $speakerName");
-                      print("Type de conference : $typeConf");
-                      print("date : $confSelectedDate");
 
                       //Ajout dans la collection
 
@@ -140,7 +138,8 @@ class _AddEventPageState extends State<AddEventPage> {
                         "speaker": speakerName,
                         "date": confSelectedDate,
                         "subject": confName,
-                        "avatar": "lior",
+                        "avatar": avatar,
+                        "type": typeConf
                       });
                     }
                   },
