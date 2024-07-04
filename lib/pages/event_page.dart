@@ -10,9 +10,44 @@ class EventPage extends StatefulWidget {
 }
 
 class _EventPageState extends State<EventPage> {
-  // final events = [];
   @override
   Widget build(BuildContext context) {
+    Future<void> showEventsDetailDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: true, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Conference Lior'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Image.network(
+                    "https://res.cloudinary.com/disyacex9/image/upload/v1718372083/l4vfzow8qkjivno6nmsn.jpg",
+                    height: 200,
+                  ),
+                  const Text(
+                    'Titre : Sujet de la conference',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  const Text('Speaker : Lior champar'),
+                  const Text('Data de la conf : 12h30'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Fermer'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return Center(
         // stream : la requette a notre collection en temps reel
         child: StreamBuilder(
@@ -61,7 +96,12 @@ class _EventPageState extends State<EventPage> {
                         title: Text('$speaker ($date)'),
                         subtitle: Text('$subject'),
                         // trailing: const Icon(Icons.more_vert),
-                        trailing: const Icon(Icons.info_sharp),
+                        trailing: IconButton(
+                            onPressed: () {
+                              // appel de la fonction popup
+                              showEventsDetailDialog();
+                            },
+                            icon: const Icon(Icons.info_sharp)),
                         isThreeLine: true,
                       ),
                     );
