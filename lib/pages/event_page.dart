@@ -95,6 +95,7 @@ class _EventPageState extends State<EventPage> {
                     final speaker = event.speaker;
                     final avatar = event.avatar;
                     final Timestamp timestamp = event.timestamp;
+                    print("events:  ${event.speaker}");
                     String date =
                         DateFormat.yMd().add_jm().format(timestamp.toDate());
                     final subject = event.subject;

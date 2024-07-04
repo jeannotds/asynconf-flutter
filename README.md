@@ -23,4 +23,8 @@ samples, guidance on mobile development, and a full API reference.
 
 2. Converture data :
       flutter pub add intl
+
+
+3. Utilisation d alert dialogue
+
 -->
