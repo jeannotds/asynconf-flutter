@@ -14,3 +14,17 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+<!--
+
+ 1.installerun moule qui permettra d utiliser firebase firestore 
+   flutter pub add cloud_firestore
+
+2. Converture data :
+      flutter pub add intl
+
+
+3. Utilisation d alert dialogue
+
+-->
