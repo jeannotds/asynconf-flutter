@@ -85,7 +85,6 @@ class _EventPageState extends State<EventPage> {
               List<Event> events = [];
 
               for (var data in snapshot.data!.docs) {
-                print("object $data");
                 events.add(Event.fromData(data));
               }
 
