@@ -1,3 +1,4 @@
+import 'package:asyncof/pages/update_event_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:asyncof/models/events_model.dart';
@@ -5,7 +6,7 @@ import 'package:asyncof/models/events_model.dart';
 class EventDetailPage extends StatelessWidget {
   final Event event;
 
-  const EventDetailPage({Key? key, required this.event}) : super(key: key);
+  const EventDetailPage({super.key, required this.event});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class EventDetailPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Détails de l\'événement'),
+        title: const Text('Détails de l\'événement'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -39,6 +40,16 @@ class EventDetailPage extends StatelessWidget {
               'Date de la conférence : $date',
               style: const TextStyle(fontSize: 17),
             ),
+            TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    // MaterialPageRoute(builder: (context) =>  EditEventPage(event: event))
+                    MaterialPageRoute(
+                        builder: (context) => EditEventPage(event: event)),
+                  );
+                },
+                child: const Text("Modifier"))
           ],
         ),
       ),
