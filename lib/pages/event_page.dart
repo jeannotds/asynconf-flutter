@@ -1,4 +1,5 @@
 import 'package:asyncof/models/events_model.dart';
+import 'package:asyncof/pages/detail_event_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -53,6 +54,18 @@ class _EventPageState extends State<EventPage> {
                 child: const Text('Fermer'),
                 onPressed: () {
                   Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: const Text('Detail'),
+                onPressed: () {
+                  // Naviguer vers la page de détails de l'événement
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EventDetailPage(event: eventData),
+                    ),
+                  );
                 },
               ),
             ],
