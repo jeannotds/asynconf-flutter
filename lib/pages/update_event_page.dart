@@ -1,7 +1,6 @@
 import 'package:asyncof/models/events_model.dart';
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EditEventPage extends StatefulWidget {
   final Event event;
