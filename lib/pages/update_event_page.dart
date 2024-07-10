@@ -1,6 +1,7 @@
 import 'package:asyncof/models/events_model.dart';
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EditEventPage extends StatefulWidget {
   final Event event;
@@ -16,6 +17,7 @@ class _EditEventPageState extends State<EditEventPage> {
   late TextEditingController confSpeakerNameController;
   late TextEditingController confNameController;
   late String confSelectedType;
+  late String confAvatar;
   late DateTime confSelectedDate;
 
   @override
@@ -26,6 +28,7 @@ class _EditEventPageState extends State<EditEventPage> {
     confNameController = TextEditingController(text: widget.event.subject);
     confSelectedType = widget.event.type;
     confSelectedDate = (widget.event.timestamp).toDate();
+    confAvatar = widget.event.avatar;
   }
 
   @override
@@ -33,6 +36,25 @@ class _EditEventPageState extends State<EditEventPage> {
     super.dispose();
     confSpeakerNameController.dispose();
     confNameController.dispose();
+  }
+
+  Future<void> _saveEvent() async {
+    if (_formKey.currentState!.validate()) {
+      // Mettre à jour les données de l'événement dans Firestore
+      CollectionReference eventsRef =
+          FirebaseFirestore.instance.collection("Events");
+      await eventsRef
+          .doc(widget.event.id) // Assurez-vous d'avoir l'ID du document
+          .update({
+        'subject': confNameController.text,
+        'speaker': confSpeakerNameController.text,
+        'avatar': confAvatar,
+        'type': confSelectedType,
+        'date': confSelectedDate,
+      });
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pop();
+    }
   }
 
   @override
@@ -139,15 +161,9 @@ class _EditEventPageState extends State<EditEventPage> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(3))))),
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            final speakerName = confSpeakerNameController.text;
-                            final confName = confNameController.text;
-                            print("speakerName : $speakerName");
-                            print("confName : $confName");
-                            print("confSelectedType : $confSelectedType");
-                            print("confSelectedDate : $confSelectedDate");
-                          }
+                          _saveEvent();
                         },
+                        // },
                         child: const Text("Modifier")),
                   )
                 ],
