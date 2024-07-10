@@ -17,7 +17,6 @@ class _EventPageState extends State<EventPage> {
     Future<void> showEventsDetailDialog(Event eventData) async {
       String date =
           DateFormat.yMd().add_jm().format(eventData.timestamp.toDate());
-      print("Event ID: ${eventData.id}");
       return showDialog<void>(
         context: context,
         barrierDismissible: true, // user must tap button!
