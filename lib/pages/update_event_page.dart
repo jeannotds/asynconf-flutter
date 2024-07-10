@@ -1,5 +1,7 @@
 import 'package:asyncof/models/events_model.dart';
 import 'package:flutter/material.dart';
+import 'package:date_field/date_field.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EditEventPage extends StatefulWidget {
   final Event event;
@@ -15,6 +17,7 @@ class _EditEventPageState extends State<EditEventPage> {
   late TextEditingController confSpeakerNameController;
   late TextEditingController confNameController;
   late String confSelectedType;
+  late DateTime confSelectedDate;
 
   @override
   void initState() {
@@ -23,6 +26,7 @@ class _EditEventPageState extends State<EditEventPage> {
         TextEditingController(text: widget.event.speaker);
     confNameController = TextEditingController(text: widget.event.subject);
     confSelectedType = widget.event.type;
+    confSelectedDate = (widget.event.timestamp).toDate();
   }
 
   @override
@@ -107,6 +111,21 @@ class _EditEventPageState extends State<EditEventPage> {
                       value: confSelectedType,
                     ),
                   ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 10),
+                    child: DateTimeFormField(
+                      decoration: const InputDecoration(
+                          // labelText: 'Selectionner une date',
+                          border: OutlineInputBorder()),
+                      // initialPickerDateTime:  DateTime.now().add(const Duration(days: 20)),,
+                      initialValue: confSelectedDate,
+                      onChanged: (DateTime? value) {
+                        setState(() {
+                          confSelectedDate = value!;
+                        });
+                      },
+                    ),
+                  ),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
@@ -127,6 +146,7 @@ class _EditEventPageState extends State<EditEventPage> {
                             print("speakerName : $speakerName");
                             print("confName : $confName");
                             print("confSelectedType : $confSelectedType");
+                            print("confSelectedDate : $confSelectedDate");
                           }
                         },
                         child: const Text("Modifier")),
