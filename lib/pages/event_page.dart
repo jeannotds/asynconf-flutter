@@ -1,5 +1,4 @@
 import 'package:asyncof/models/events_model.dart';
-import 'package:asyncof/pages/detail_event_page.dart';
 import 'package:asyncof/pages/update_event_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
