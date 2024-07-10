@@ -12,8 +12,16 @@ class EditEventPage extends StatefulWidget {
 class _EditEventPageState extends State<EditEventPage> {
   final _formKey = GlobalKey<FormState>();
 
-  final confSpeakerNameController = TextEditingController();
-  final confNameController = TextEditingController();
+  late TextEditingController confSpeakerNameController;
+  late TextEditingController confNameController;
+
+  @override
+  void initState() {
+    super.initState();
+    confSpeakerNameController =
+        TextEditingController(text: widget.event.speaker);
+    confNameController = TextEditingController(text: widget.event.subject);
+  }
 
   @override
   void dispose() {
