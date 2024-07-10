@@ -12,6 +12,16 @@ class EditEventPage extends StatefulWidget {
 class _EditEventPageState extends State<EditEventPage> {
   final _formKey = GlobalKey<FormState>();
 
+  final confSpeakerNameController = TextEditingController();
+  final confNameController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    confSpeakerNameController.dispose();
+    confNameController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +49,7 @@ class _EditEventPageState extends State<EditEventPage> {
                           return null;
                         }
                       },
+                      controller: confSpeakerNameController,
                     ),
                   ),
                   Container(
@@ -56,6 +67,7 @@ class _EditEventPageState extends State<EditEventPage> {
                           return null;
                         }
                       },
+                      controller: confNameController,
                     ),
                   ),
                   SizedBox(
@@ -73,7 +85,10 @@ class _EditEventPageState extends State<EditEventPage> {
                                         BorderRadius.all(Radius.circular(3))))),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            print("object");
+                            final speakerName = confSpeakerNameController.text;
+                            final confName = confNameController.text;
+                            print("speakerName : $speakerName");
+                            print("confName : $confName");
                           }
                         },
                         child: const Text("Modifier")),
@@ -83,13 +98,3 @@ class _EditEventPageState extends State<EditEventPage> {
         ));
   }
 }
-
-
-// Center(
-//         child: Column(
-//           children: [
-//             Text(widget.event.speaker),
-//             Text(widget.event.subject),
-//           ],
-//         ),
-//       ),
