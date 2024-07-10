@@ -1,5 +1,4 @@
 import 'package:asyncof/models/events_model.dart';
-import 'package:asyncof/pages/event_page.dart';
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -53,15 +52,8 @@ class _EditEventPageState extends State<EditEventPage> {
         'type': confSelectedType,
         'date': confSelectedDate,
       });
-
-      if (!mounted) return;
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Événement mis à jour avec succès!')),
-      );
-
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const EventPage()));
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pop();
     }
   }
 
