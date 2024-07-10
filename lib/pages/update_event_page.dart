@@ -14,6 +14,7 @@ class _EditEventPageState extends State<EditEventPage> {
 
   late TextEditingController confSpeakerNameController;
   late TextEditingController confNameController;
+  late String confSelectedType;
 
   @override
   void initState() {
@@ -21,6 +22,7 @@ class _EditEventPageState extends State<EditEventPage> {
     confSpeakerNameController =
         TextEditingController(text: widget.event.speaker);
     confNameController = TextEditingController(text: widget.event.subject);
+    confSelectedType = widget.event.type;
   }
 
   @override
@@ -78,6 +80,33 @@ class _EditEventPageState extends State<EditEventPage> {
                       controller: confNameController,
                     ),
                   ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 10),
+                    child: DropdownButtonFormField(
+                      decoration:
+                          const InputDecoration(border: OutlineInputBorder()),
+                      items: const [
+                        DropdownMenuItem(
+                          value: "talk",
+                          child: Text("Talk show"),
+                        ),
+                        DropdownMenuItem(
+                          value: "demo",
+                          child: Text("Demo show"),
+                        ),
+                        DropdownMenuItem(
+                          value: "partner",
+                          child: Text("Partner show"),
+                        ),
+                      ],
+                      onChanged: (String? value) {
+                        setState(() {
+                          confSelectedType = value!;
+                        });
+                      },
+                      value: confSelectedType,
+                    ),
+                  ),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
@@ -97,6 +126,7 @@ class _EditEventPageState extends State<EditEventPage> {
                             final confName = confNameController.text;
                             print("speakerName : $speakerName");
                             print("confName : $confName");
+                            print("confSelectedType : $confSelectedType");
                           }
                         },
                         child: const Text("Modifier")),
@@ -106,3 +136,28 @@ class _EditEventPageState extends State<EditEventPage> {
         ));
   }
 }
+
+
+// Future<void> _saveEvent() async {
+//     if (_formKey.currentState!.validate()) {
+//       // Mettre à jour les données de l'événement dans Firestore
+//       await FirebaseFirestore.instance
+//           .collection('Events')
+//           .doc(widget.event.id) // Assurez-vous d'avoir l'ID du document
+//           .update({
+//         'subject': _subjectController.text,
+//         'speaker': _speakerController.text,
+//         'avatar': _avatarController.text,
+//         'type': _typeController.text,
+//         'date': Timestamp.fromDate(DateFormat.yMd().add_jm().parse(_dateController.text)),
+//       });
+
+//       Navigator.of(context).pop();
+//     }
+//   }
+
+
+// ElevatedButton(
+//                 onPressed: _saveEvent,
+//                 child: const Text('Enregistrer les modifications'),
+//               ),
