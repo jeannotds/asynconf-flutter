@@ -171,28 +171,3 @@ class _EditEventPageState extends State<EditEventPage> {
         ));
   }
 }
-
-
-// Future<void> _saveEvent() async {
-//     if (_formKey.currentState!.validate()) {
-//       // Mettre à jour les données de l'événement dans Firestore
-//       await FirebaseFirestore.instance
-//           .collection('Events')
-//           .doc(widget.event.id) // Assurez-vous d'avoir l'ID du document
-//           .update({
-//         'subject': _subjectController.text,
-//         'speaker': _speakerController.text,
-//         'avatar': _avatarController.text,
-//         'type': _typeController.text,
-//         'date': Timestamp.fromDate(DateFormat.yMd().add_jm().parse(_dateController.text)),
-//       });
-
-//       Navigator.of(context).pop();
-//     }
-//   }
-
-
-// ElevatedButton(
-//                 onPressed: _saveEvent,
-//                 child: const Text('Enregistrer les modifications'),
-//               ),

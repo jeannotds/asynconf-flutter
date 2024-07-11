@@ -104,6 +104,18 @@ class _AddEventPageState extends State<AddEventPage> {
                 },
               ),
             ),
+            Container(
+              margin: const EdgeInsets.all(10),
+              child: IconButton(
+                  onPressed: () {
+                    // 1. Pick picture an image
+                    // 2. Upload Image
+                    // 3. get Url
+                    // 4. Storage image inside the corresponing documentation of the database
+                    // 5.display de image
+                  },
+                  icon: const Icon(Icons.camera_alt)),
+            ),
             SizedBox(
               width: double.infinity,
               height: 50,

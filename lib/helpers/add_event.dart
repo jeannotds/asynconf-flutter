@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-createEvent(context, event) {
+Future<void> createEvent(context, event) async {
   ScaffoldMessenger.of(context)
       .showSnackBar(const SnackBar(content: Text("Envois en cours...")));
 
@@ -12,7 +12,7 @@ createEvent(context, event) {
   CollectionReference eventsRef =
       FirebaseFirestore.instance.collection("Events");
 
-  eventsRef.add({
+  await eventsRef.add({
     "speaker": event["speakerName"],
     "date": event["dateConf"],
     "subject": event["confName"],
