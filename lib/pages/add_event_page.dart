@@ -1,3 +1,4 @@
+import 'package:asyncof/helpers/add_event.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
@@ -116,31 +117,16 @@ class _AddEventPageState extends State<AddEventPage> {
                       ))),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      final confName = confNameController.text;
-                      final speakerName = confSpeakerNameController.text;
-                      final typeConf = confSelectedType;
-                      String avatar =
-                          "https://res.cloudinary.com/disyacex9/image/upload/v1718372083/l4vfzow8qkjivno6nmsn.jpg";
+                      final event = {
+                        'confName': confNameController.text,
+                        'speakerName': confSpeakerNameController.text,
+                        'typeConf': confSelectedType,
+                        'avatar':
+                            "https://res.cloudinary.com/disyacex9/image/upload/v1718372083/l4vfzow8qkjivno6nmsn.jpg",
+                        'dateConf': confSelectedDate,
+                      };
 
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text("Envois en cours...")));
-
-                      // Send form and close keyboard
-                      FocusScope.of(context).requestFocus(FocusNode());
-
-                      //Ajout dans la collection
-
-                      // Recuperer la collection
-                      CollectionReference eventsRef =
-                          FirebaseFirestore.instance.collection("Events");
-
-                      eventsRef.add({
-                        "speaker": speakerName,
-                        "date": confSelectedDate,
-                        "subject": confName,
-                        "avatar": avatar,
-                        "type": typeConf
-                      });
+                      createEvent(context, event);
                     }
                   },
                   child: const Text("Envoyer")),
