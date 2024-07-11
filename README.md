@@ -27,4 +27,24 @@ samples, guidance on mobile development, and a full API reference.
 
 3. Utilisation d alert dialogue
 
+
+Utilisation camera et galerie 
+    <!-- Mettre à jour les permissions dans AndroidManifest.xml (pour Android) and ios : :
+    
+
+   Pour android dans le fichier AndroidManifest.xml
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+   Pour ios dans le fichier Info.plist (pour iOS)
+<key>NSPhotoLibraryUsageDescription</key>
+<string>We need access to your photo library to upload images.</string>
+<key>NSCameraUsageDescription</key>
+<string>We need access to your camera to take pictures.</string>
+    
+    
+     -->
+
+
 -->

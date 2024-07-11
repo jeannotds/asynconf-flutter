@@ -45,5 +45,12 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+	<!-- Mettre à jour les permissions dans Info.plist (pour iOS) : -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photo library to upload images.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to your camera to take pictures.</string>
+
 </dict>
 </plist>
