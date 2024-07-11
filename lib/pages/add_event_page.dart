@@ -1,6 +1,7 @@
 import 'package:asyncof/helpers/add_event.dart';
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddEventPage extends StatefulWidget {
   const AddEventPage({super.key});
@@ -108,7 +109,10 @@ class _AddEventPageState extends State<AddEventPage> {
               margin: const EdgeInsets.all(10),
               child: IconButton(
                   onPressed: () {
+                    print("object : ");
                     // 1. Pick picture an image
+                    ImagePicker imagePicker = ImagePicker();
+                    imagePicker.pickImage(source: ImageSource.gallery);
                     // 2. Upload Image
                     // 3. get Url
                     // 4. Storage image inside the corresponing documentation of the database
