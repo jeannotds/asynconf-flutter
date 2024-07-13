@@ -22,6 +22,7 @@ class _AddEventPageState extends State<AddEventPage> {
   final confSpeakerNameController = TextEditingController();
   String confSelectedType = "talk";
   DateTime confSelectedDate = DateTime.now();
+  String confAvatar = "";
   //  selectedDate;
 
 //dispose elements to get
@@ -112,6 +113,8 @@ class _AddEventPageState extends State<AddEventPage> {
               margin: const EdgeInsets.all(10),
               child: IconButton(
                   onPressed: () async{
+
+                    String imageUrl = "";
                     
                     // 1. Pick picture an image
                   ImagePicker imagePicker = ImagePicker();
@@ -140,9 +143,14 @@ class _AddEventPageState extends State<AddEventPage> {
                     await referenceImageToUpload.putFile(File(file.path));
 
                     // if success : get download url
-                    String imageUrl = await referenceImageToUpload.getDownloadURL();
+                    imageUrl = await referenceImageToUpload.getDownloadURL();
 
-                    print("imageUrl of image : $imageUrl");
+                     setState(() {
+                      confAvatar = imageUrl;
+                    });
+
+                    print("imageUrl of image : $confAvatar");
+                    // print("imageUrl of avatar : $confAvatar");
 
 
                     }catch(error){
@@ -174,8 +182,7 @@ class _AddEventPageState extends State<AddEventPage> {
                         'confName': confNameController.text,
                         'speakerName': confSpeakerNameController.text,
                         'typeConf': confSelectedType,
-                        'avatar':
-                            "https://res.cloudinary.com/disyacex9/image/upload/v1718372083/l4vfzow8qkjivno6nmsn.jpg",
+                        'avatar': confAvatar,
                         'dateConf': confSelectedDate,
                       };
 
