@@ -43,8 +43,12 @@ Utilisation camera et galerie
 <key>NSCameraUsageDescription</key>
 <string>We need access to your camera to take pictures.</string>
     
-    
+
+     <!-- 
+     For using fire store : install 
+     
+     1.  flutter pub add firebase_storage
+     
+     
+     
      -->
-
-
--->

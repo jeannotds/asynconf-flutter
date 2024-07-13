@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:asyncof/helpers/add_event.dart';
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class AddEventPage extends StatefulWidget {
   const AddEventPage({super.key});
@@ -108,12 +111,47 @@ class _AddEventPageState extends State<AddEventPage> {
             Container(
               margin: const EdgeInsets.all(10),
               child: IconButton(
-                  onPressed: () {
-                    print("object : ");
+                  onPressed: () async{
+                    
                     // 1. Pick picture an image
-                    ImagePicker imagePicker = ImagePicker();
-                    imagePicker.pickImage(source: ImageSource.gallery);
+                  ImagePicker imagePicker = ImagePicker();
+                  XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
+                  print("object : ${file?.path}");
+
+                  if(file == null) return;
+
+                  String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
+
+                  print("uniqueFileName : $uniqueFileName");
+
+
                     // 2. Upload Image
+
+                    // 2.1 Get the reference to storage root  : Obtenir la référence à la racine de stockage
+                    Reference referenceRoot = FirebaseStorage.instance.ref();
+                    Reference referenceDirImages = referenceRoot.child("images");
+
+                    // handle error or success
+                    try{
+                    // 2.2 Create a reference for the image to stored : Créer une référence pour l'image à stocker
+                    Reference referenceImageToUpload = referenceDirImages.child(uniqueFileName);
+                   
+                    // Store the file : Stocker le fichier
+                    await referenceImageToUpload.putFile(File(file.path));
+
+                    // if success : get download url
+                    String imageUrl = await referenceImageToUpload.getDownloadURL();
+
+                    print("imageUrl of image : $imageUrl");
+
+
+                    }catch(error){
+                      print("Error occurred while uploading image: $error");
+                    }
+
+
+
+
                     // 3. get Url
                     // 4. Storage image inside the corresponing documentation of the database
                     // 5.display de image
