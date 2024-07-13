@@ -108,7 +108,7 @@ class _EventPageState extends State<EventPage> {
                           avatar,
                         ),
                         title: Text('$speaker ($date)'),
-                        subtitle: Text('$subject'),
+                        subtitle: Text(subject),
                         // trailing: const Icon(Icons.more_vert),
                         trailing: IconButton(
                             onPressed: () {
